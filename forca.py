@@ -1,15 +1,19 @@
 def jogar():
 
-    enforcou = False
-    acertou = False
-    erros = 0
+
 
     print("\n*********************************")
     print("***Bem vindo ao jogo de Forca!***")
     print("*********************************")
 
     palavra_secreta = "banana".upper()
-    letras_acertadas = ["_","_","_","_","_","_"]
+    letras_acertadas = ["_" for letra in palavra_secreta]
+
+    enforcou = False
+    acertou = False
+    erros = 0
+    arquivo = open("palavras.txt", "w")
+    arquivo.write("banana")
 
     print(letras_acertadas)
 
