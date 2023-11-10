@@ -1,20 +1,23 @@
+import random
+
+def inicializa_letras(palavra_secreta):
+    
+    return ["_" for letra in palavra_secreta]
+
 def jogar():
 
+    mensagem_abertura()
 
+    vagabunda()
 
-    print("\n*********************************")
-    print("***Bem vindo ao jogo de Forca!***")
-    print("*********************************")
-
-    palavra_secreta = "banana".upper()
-    letras_acertadas = ["_" for letra in palavra_secreta]
+    palavra_secreta = vagabunda()
+    
+    letras_acertadas = inicializa_letras(palavra_secreta)
 
     enforcou = False
     acertou = False
     erros = 0
-    arquivo = open("palavras.txt", "w")
-    arquivo.write("banana")
-
+    
     print(letras_acertadas)
 
     while (not enforcou and not acertou):
@@ -25,7 +28,6 @@ def jogar():
             index = 0
             for letra in palavra_secreta:
                 if(chute == letra):
-                    print(chute)
                     letras_acertadas[index] = letra
                 index += 1
         else:
@@ -43,3 +45,23 @@ def jogar():
 
 if(__name__ == "__main__"):
     jogar()
+
+def mensagem_abertura():
+
+    print("\n*********************************")
+    print("***Bem vindo ao jogo de Forca!***")
+    print("*********************************")
+
+def vagabunda():
+    arquivo = open("palavras.txt", "r")
+    palavras = []
+
+    for linha in arquivo:
+            linha = linha.strip()
+            palavras.append(linha)
+
+    arquivo.close()    
+
+    rando = random.randrange(0,len(palavras))
+    palavra_secreta = palavras[rando].upper()
+    return palavra_secreta
